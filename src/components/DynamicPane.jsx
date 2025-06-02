@@ -10,6 +10,8 @@ import {
   Input,
 } from "@chakra-ui/react";
 import ActionCards from "./ActionCards"; // <-- Your existing ActionCards file
+import EmptyPane from "./EmptyPane";
+
 
 // ---- Demo data ----
 const demoApplications = [
@@ -124,16 +126,18 @@ function ProfilePanel({ profile }) {
 }
 
 // ---- Main Dynamic Pane Component ----
-function DynamicPane() {
-  const [activeSection, setActiveSection] = useState("applications"); // "search", "profile"
+
+function DynamicPane({ panel, onSelect }) {
+  const activeSection = panel; // panel could be "" or undefined for empty
 
   return (
     <>
       <ActionCards
-        onSelect={setActiveSection}
+        onSelect={onSelect}
         applicationUpdates={demoApplications.length}
         newJobs={demoSavedSearches.reduce((sum, s) => sum + s.newJobs, 0)}
       />
+      {!activeSection && <EmptyPane onSelect={onSelect} />}
       {activeSection === "applications" && (
         <ApplicationsPanel applications={demoApplications} />
       )}
