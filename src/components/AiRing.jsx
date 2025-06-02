@@ -6,7 +6,7 @@ const spin = keyframes`
   100% { transform: rotate(360deg); }
 `;
 
-export default function AiRing({ size = "40px" }) {
+export default function AiRing({ size = "20px" }) {
   return (
     <Box
       width={size}

@@ -23,8 +23,9 @@ const ACTIONS = [
 ];
 
 function ActionCards({ onSelect }) {
-  const cardBg = useColorModeValue("white", "gray.700");
-  const hoverBg = useColorModeValue("blue.50", "gray.600");
+  const cardBg = useColorModeValue("white", "gray.50");
+  const hoverBg = useColorModeValue("blue.50", "gray.100");
+  const accent = useColorModeValue("blue.400", "blue.300");
 
   return (
     <SimpleGrid columns={[1, null, 3]} spacing={6} mb={8} px={4} maxW="900px" mx="auto">
@@ -32,8 +33,10 @@ function ActionCards({ onSelect }) {
         <Box
           key={action.key}
           bg={cardBg}
-          _hover={{ bg: hoverBg, transform: "translateY(-4px)", shadow: "lg" }}
-          shadow="md"
+          _hover={{ bg: hoverBg, borderColor: accent, transform: "translateY(-2px) scale(1.03)", boxShadow: "xl" }}
+          border="1px solid"
+          borderColor="transparent"
+          shadow="sm"
           rounded="2xl"
           p={6}
           textAlign="center"
@@ -41,7 +44,7 @@ function ActionCards({ onSelect }) {
           transition="all 0.2s"
           onClick={() => onSelect(action.key)}
         >
-          <Icon as={action.icon} boxSize={8} color="blue.400" mb={2} />
+          <Icon as={action.icon} boxSize={8} color={accent} mb={2} />
           <Text fontWeight="bold" fontSize="lg" mb={1}>
             {action.label}
           </Text>

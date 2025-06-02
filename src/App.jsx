@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <Box minH="100vh" bgGradient="linear(to-b, blue.50, blue.100)">
+    <Box minH="100vh" bg="grey.50">
       <Header />
       <Box pt={12} display="flex" flexDirection="column" alignItems="center">
         <AIChatBox onSelect={handleSelect} />
