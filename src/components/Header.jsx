@@ -1,34 +1,30 @@
-import { Flex, Box, Heading, Spacer, Avatar, IconButton } from "@chakra-ui/react";
+import { Flex, Box, Heading, Spacer, Avatar, IconButton, Button } from "@chakra-ui/react";
 import { FiLogOut } from "react-icons/fi";
 
-function Header() {
+function Header({ showCards, setShowCards, showTimeline, setShowTimeline }) {
   return (
-    <Flex
-      as="header"
-      align="center"
-      justify="space-between"
-      px={8}
-      py={4}
-      shadow="sm"
-      bg="white"
-      position="sticky"
-      top={0}
-      zIndex={100}
-      width="100%"
-    >
-      <Heading size="md" color="blue.600" letterSpacing="tight">
+    <Flex as="header" bg="white" py={4} px={8} align="center" shadow="sm">
+      <Box fontWeight="bold" fontSize="2xl" color="blue.500">
         AI User Hub
-      </Heading>
+      </Box>
       <Spacer />
-      <Flex align="center" gap={4}>
-        <Avatar name="Joseph Woodland" size="sm" />
-        <IconButton
-          aria-label="Logout"
-          icon={<FiLogOut />}
-          variant="ghost"
-          colorScheme="blue"
-        />
-      </Flex>
+      <Button
+        size="sm"
+        colorScheme={showCards ? "blue" : "gray"}
+        variant={showCards ? "solid" : "outline"}
+        mr={2}
+        onClick={() => setShowCards(!showCards)}
+      >
+        {showCards ? "Hide Cards" : "Show Cards"}
+      </Button>
+      <Button
+        size="sm"
+        colorScheme={showTimeline ? "blue" : "gray"}
+        variant={showTimeline ? "solid" : "outline"}
+        onClick={() => setShowTimeline(!showTimeline)}
+      >
+        {showTimeline ? "Hide Timeline" : "Show Timeline"}
+      </Button>
     </Flex>
   );
 }

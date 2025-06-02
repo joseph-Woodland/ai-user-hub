@@ -127,22 +127,27 @@ function ProfilePanel({ profile }) {
 
 // ---- Main Dynamic Pane Component ----
 
-function DynamicPane({ panel, onSelect }) {
+function DynamicPane({ panel, onSelect, showCards }) {
   const activeSection = panel; // panel could be "" or undefined for empty
 
   return (
     <>
-      <ActionCards
-        onSelect={onSelect}
-        applicationUpdates={demoApplications.length}
-        newJobs={demoSavedSearches.reduce((sum, s) => sum + s.newJobs, 0)}
-      />
-      {!activeSection && <EmptyPane onSelect={onSelect} />}
+      {showCards && (
+        <ActionCards
+          onSelect={onSelect}
+          applicationUpdates={demoApplications.length}
+          newJobs={demoSavedSearches.reduce((sum, s) => sum + s.newJobs, 0)}
+        />
+      )}
+      {!activeSection && <EmptyPane />}
       {activeSection === "applications" && (
         <ApplicationsPanel applications={demoApplications} />
       )}
       {activeSection === "search" && (
-        <SearchPanel savedSearches={demoSavedSearches} recommendedJobs={demoRecommendedJobs} />
+        <SearchPanel
+          savedSearches={demoSavedSearches}
+          recommendedJobs={demoRecommendedJobs}
+        />
       )}
       {activeSection === "profile" && (
         <ProfilePanel profile={demoProfile} />

@@ -14,8 +14,9 @@ const jobTimelineEvents = [
 ];
 
 function App() {
-  const [activePanel, setActivePanel] = useState(""); // or undefined
-
+  const [activePanel, setActivePanel] = useState("");
+  const [showCards, setShowCards] = useState(true);
+  const [showTimeline, setShowTimeline] = useState(true);
   // From chat or timeline or cards, show that panel
   const handleSelect = (value) => {
     // Make sure to match keys in DynamicPane/ActionCards!
@@ -35,12 +36,27 @@ function App() {
 
   return (
     <Box minH="100vh" bg="gray.50">
-      <Header />
-      <HorizontalTimeline events={jobTimelineEvents} onStepClick={handleTimelineClick} highlightedKeys={["cv_update", "job_alert"]} />
+      <Header
+        showCards={showCards}
+        setShowCards={setShowCards}
+        showTimeline={showTimeline}
+        setShowTimeline={setShowTimeline}
+      />
+      {showTimeline && (
+        <HorizontalTimeline
+          events={jobTimelineEvents}
+          onStepClick={handleTimelineClick}
+          highlightedKeys={["cv_update", "job_alert"]}
+        />
+      )}
       <Box pt={12} display="flex" flexDirection="column" alignItems="center">
         <Box w="100%" maxW="900px" px={4}>
           <AIChatBox onSelect={handleSelect} />
-          <DynamicPane panel={activePanel} onSelect={handleSelect} />
+          <DynamicPane
+            panel={activePanel}
+            onSelect={handleSelect}
+            showCards={showCards}
+          />
         </Box>
       </Box>
     </Box>
