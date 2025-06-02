@@ -17,14 +17,15 @@ function App() {
   };
 
   return (
-    <Box minH="100vh" bg="grey.50">
-      <Header />
-      <Box pt={12} display="flex" flexDirection="column" alignItems="center">
-        <AIChatBox onSelect={handleSelect} />
-        <ActionCards onSelect={handleSelect} />
-        <DynamicPane panel={activePanel} />
-      </Box>
+<Box minH="100vh" bg="gray.50">
+  <Header />
+  <Box pt={12} display="flex" flexDirection="column" alignItems="center">
+    <Box w="100%" maxW="900px" px={4}>
+      <AIChatBox onSelect={handleSelect} />
+      <DynamicPane panel={activePanel} />
     </Box>
+  </Box>
+</Box>
   );
 }
 
